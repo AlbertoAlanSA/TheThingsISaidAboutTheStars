@@ -898,13 +898,14 @@ GameObject:
   - component: {fileID: 730438908}
   - component: {fileID: 730438907}
   - component: {fileID: 730438911}
+  - component: {fileID: 730438912}
   m_Layer: 5
   m_Name: CanvaController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &730438907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1003,11 +1004,28 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 730438906}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a899a54de8ce44a468dea1a5fee0c5ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: cb6b717e111db9541912590ea424535e, type: 2}
+--- !u!114 &730438912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730438906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e9861ff43871be44a3988d158f59818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: cb6b717e111db9541912590ea424535e, type: 2}
+  _defaultSelection: {fileID: 0}
+  _currentSelection: {fileID: 0}
+  _mouseSelection: {fileID: 0}
 --- !u!1 &880164926
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,18 +4101,6 @@ PrefabInstance:
       value: PJ
       objectReference: {fileID: 0}
     - target: {fileID: 6867021832257608075, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6867021832257608075, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6867021832257608075, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6867021832257608075, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -4135,16 +4141,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6983505692097943318, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      propertyPath: m_Camera
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6983505692097943318, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6983505692097943318, guid: 899bbb54c3d347d46834ea05d26b96c1, type: 3}
-      propertyPath: m_ActionEvents.Array.data[6].m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      propertyPath: m_UIInputModule
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1491958546442591800}
   - component: {fileID: 1769993349452622004}
   - component: {fileID: 6983505692097943318}
-  - component: {fileID: 6547359054456393593}
+  - component: {fileID: 1030379755652044984}
   m_Layer: 0
   m_Name: PJ
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 00122d15169ff864fae53a1dad5b7b40, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 3
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -176,43 +176,11 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: Move
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 61a26c29-1da0-4923-aafa-4e7a0c5b7426
     m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2899a473-2a41-4074-bd91-cf21e0dfad25
-    m_ActionName: Player/Look[/XInputControllerWindows/rightStick,/Mouse/delta,/Pen/delta]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 777c6c81-ae5a-4dd1-8492-06e989cfe99a
-    m_ActionName: Player/Fire[/XInputControllerWindows/rightTrigger,/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: Interactuate
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_ActionId: e44d53dd-6bb1-458d-afd1-421ff4ab0e7c
     m_ActionName: Player/Talk[/XInputControllerWindows/buttonSouth,/Keyboard/enter]
   - m_PersistentCalls:
@@ -256,91 +224,35 @@ MonoBehaviour:
     m_ActionId: 1edb6e0f-e7e2-4c01-a699-5ed48b20a183
     m_ActionName: UI/TrackedDeviceOrientation
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: OpenInventory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 4650e41f-f04b-47f4-9a85-3e2bbd2c8ecd
     m_ActionName: Player/OpenInventory[/XInputControllerWindows/buttonWest,/Keyboard/z]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: Cancel
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 5901f898-c8ed-4fcc-9397-f26c9dfa67d6
     m_ActionName: Player/Cancel[/XInputControllerWindows/buttonEast,/Keyboard/x]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: Diary
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 0469de18-4cfd-4ecd-b394-7613d0b28e49
     m_ActionName: Player/Diary[/XInputControllerWindows/buttonNorth,/Keyboard/c]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: MP3
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 32fb749b-cbd2-4299-8b7e-ff6935c930d4
     m_ActionName: Player/MP3[/XInputControllerWindows/start,/Keyboard/a]
   - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6547359054456393593}
-        m_TargetAssemblyTypeName: PlayerMovement, InputSystem
-        m_MethodName: Options
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_ActionId: 0a63e87a-562f-4497-a998-821800657c28
     m_ActionName: Player/Options[/XInputControllerWindows/select,/Keyboard/s]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db7c6cc5-e37e-4aca-9f45-9a9fe6a58c5d
+    m_ActionName: Dialogues/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player
+  m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &6547359054456393593
+--- !u!114 &1030379755652044984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,7 +261,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1012361489677719157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fa3b36f8cc12294ca573fbd0c5f2f4a, type: 3}
+  m_Script: {fileID: 11500000, guid: bb2f5f69f2ff44558393268e05aad9d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: cb6b717e111db9541912590ea424535e, type: 2}
   rb: {fileID: 1491958546442591800}

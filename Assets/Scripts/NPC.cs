@@ -8,12 +8,12 @@ using UnityEngine.PlayerLoop;
 public class NPC : MonoBehaviour
 {
     private GameObject PJ;
-    private PlayerMovement playerMovement;
+    private PlayerManager playerMovement;
 
     private void Start()
     {
         PJ = GameObject.Find("PJ");
-        playerMovement = PJ.GetComponent<PlayerMovement>();
+        playerMovement = PJ.GetComponent<PlayerManager>();
 
     }
 
