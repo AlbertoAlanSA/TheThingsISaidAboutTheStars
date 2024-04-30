@@ -14,7 +14,6 @@ public class NPC : MonoBehaviour
     {
         PJ = GameObject.Find("PJ");
         playerMovement = PJ.GetComponent<PlayerManager>();
-
     }
 
     private void FixedUpdate()

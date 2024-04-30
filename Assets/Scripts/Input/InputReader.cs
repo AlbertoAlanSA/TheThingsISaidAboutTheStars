@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInput.IMenusActions, GameInput.IDialoguesActions
+public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInput.IMenusActions
 {
         // Gameplay
         public event UnityAction<Vector2> MoveEvent = delegate { };
@@ -18,7 +18,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInpu
 
 
         //Menus
-        public event UnityAction MoveSelectionEvent = delegate { };
+        public event UnityAction<Vector2> MoveSelectionEvent = delegate { };
 
         public event UnityAction MenuMouseMoveEvent = delegate { };
         public event UnityAction MenuClickButtonEvent = delegate { };
@@ -41,9 +41,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInpu
                 if (_gameInput == null)
                 {
                         _gameInput = new GameInput();
-                        _gameInput.Menus.SetCallbacks(this);
                         _gameInput.Gameplay.SetCallbacks(this);
-                        _gameInput.Dialogues.SetCallbacks(this);
                 }
 
         }
@@ -101,10 +99,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInpu
                 if (context.performed) OpenInventoryEvent.Invoke();
         }
 
-        public void OnCancel(InputAction.CallbackContext context)
-        {
-                if (context.performed) CancelEvent.Invoke();
-        }
+        
 
         public void OnDiary(InputAction.CallbackContext context)
         {
@@ -123,51 +118,46 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInpu
 
         #endregion
 
-        #region MENUS
-
-
+        #region menus
+        
         public void OnMoveSelection(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed) 
-                        MoveSelectionEvent.Invoke();
+                MoveSelectionEvent.Invoke(context.ReadValue<Vector2>());
         }
 
         public void OnNavigate(InputAction.CallbackContext context)
         {
+                throw new NotImplementedException();
         }
 
         public void OnSubmit(InputAction.CallbackContext context)
         {
+                throw new NotImplementedException();
         }
 
         public void OnConfirm(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        MenuClickButtonEvent.Invoke();
+                throw new NotImplementedException();
         }
 
         void GameInput.IMenusActions.OnCancel(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        MenuCloseEvent.Invoke();
+                if (context.performed) OptionsEvent.Invoke();
         }
 
         public void OnMouseMove(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        MenuMouseMoveEvent.Invoke();
+                throw new NotImplementedException();
         }
 
         public void OnUnpause(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        MenuUnpauseEvent.Invoke();
+                throw new NotImplementedException();
         }
 
         public void OnChangeTab(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        TabSwitched.Invoke(context.ReadValue<float>());
+                throw new NotImplementedException();
         }
 
         public void OnInventoryActionButton(InputAction.CallbackContext context)
@@ -187,34 +177,34 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions,GameInpu
 
         public void OnClick(InputAction.CallbackContext context)
         {
+                throw new NotImplementedException();
         }
 
         public void OnPoint(InputAction.CallbackContext context)
         {
-
+                throw new NotImplementedException();
         }
 
         public void OnRightClick(InputAction.CallbackContext context)
         {
+                throw new NotImplementedException();
         }
 
         public void OnCloseInventory(InputAction.CallbackContext context)
         {
-                CloseInventoryEvent.Invoke();
+                throw new NotImplementedException();
         }
 
-        #endregion
-
-        #region DIALOGUES
-
-        public void OnAdvanceDialogue(InputAction.CallbackContext context)
+        void GameInput.IGameplayActions.OnCancel(InputAction.CallbackContext context)
         {
-                if (context.phase == InputActionPhase.Performed)
-                        AdvanceDialogueEvent.Invoke();
+                if (context.performed) OptionsEvent.Invoke();
         }
 
-        #endregion
+
         
+
+        #endregion
+
         public bool LeftMouseDown() => Mouse.current.leftButton.isPressed;
 
 

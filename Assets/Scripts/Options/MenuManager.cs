@@ -1,21 +1,30 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Serialization;
 
 public class MenuManager : MonoBehaviour
 {
         [SerializeField] private InputReader _inputReader;
-        [SerializeField] private GameObject _menuPrefab;
-        private GameObject _menuInstance;
+        [SerializeField] private GameObject _canvasMenu;
+        
+        public bool Pause { get; set; }
 
-        private void OpenMenu()
+        private void Awake()
         {
-                if (_menuInstance == null) _menuInstance = Instantiate(_menuPrefab);
-                _menuInstance.SetActive(true);
+                Pause = false;
+        }
+
+        public void OpenMenu()
+        {
+                Pause = true;
+                _canvasMenu.SetActive(true);
                 _inputReader.EnableMenuInput();
         }
 
-        private void UnpauseMenu()
+        public void CloseMenu()
         {
-                _menuInstance.SetActive(false);
+                Pause = false;
+                _canvasMenu.SetActive(false);
                 _inputReader.EnableGameplayInput();
         }
 }

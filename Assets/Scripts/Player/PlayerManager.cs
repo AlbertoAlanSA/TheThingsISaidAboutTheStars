@@ -9,16 +9,26 @@ public class PlayerManager : MonoBehaviour
     private bool _canTalkToNpc = false;
     public bool CanTalkToNpc
     {
-        get { return _canTalkToNpc;}
-        set { _canTalkToNpc = value; }
-    }
+        set => _canTalkToNpc = value;
+    }    
+    private MenuManager _menuManager;
     
     private float horizontal;
     private float vertical;
     private float speed = 8f;
     private bool isFacingRight = true;
     private bool isFacingUp = true;
-    
+
+    private void Start()
+    {
+        _menuManager = GetComponent<MenuManager>();
+    }
+    private void Update()
+    {
+        rb.velocity = new Vector3(horizontal * speed,  vertical*speed);
+        CheckSpriteOrientation(); //reemplazar con animation tree
+    }
+
     private void OnEnable()
     {
         inputReader.EnableGameplayInput();
@@ -71,15 +81,13 @@ public class PlayerManager : MonoBehaviour
     }
     public void OnOptions ()
     {
-        Debug.Log("Options");
+       Debug.Log("Options");
+       if(!_menuManager.Pause) _menuManager.OpenMenu();
+       else _menuManager.CloseMenu();
     }
     
 
-    private void Update()
-    {
-        rb.velocity = new Vector3(horizontal * speed,  vertical*speed);
-        CheckSpriteOrientation(); //reemplazar con animation tree
-    }
+    
 
     private void CheckSpriteOrientation()
     {
