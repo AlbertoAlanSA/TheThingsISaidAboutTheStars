@@ -7,19 +7,6 @@ using UnityEngine.PlayerLoop;
 
 public class NPC : MonoBehaviour
 {
-    private GameObject PJ;
-    private PlayerManager playerMovement;
 
-    private void Start()
-    {
-        PJ = GameObject.Find("PJ");
-        playerMovement = PJ.GetComponent<PlayerManager>();
-    }
-
-    private void FixedUpdate()
-    {
-        if (Vector3.Distance(PJ.transform.position, transform.position) <= 2f)
-             playerMovement.CanTalkToNpc = true;
-        else playerMovement.CanTalkToNpc = false;
-    }
+    
 }

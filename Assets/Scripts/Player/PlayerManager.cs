@@ -1,16 +1,14 @@
 ﻿using System;
 using UnityEngine;
-
+using Articy.Unity;
 public class PlayerManager : MonoBehaviour
 {
     public InputReader inputReader;
     public Rigidbody2D rb;
+    public DialogueManager _dialogueManager;
 
-    private bool _canTalkToNpc = false;
-    public bool CanTalkToNpc
-    {
-        set => _canTalkToNpc = value;
-    }    
+    private ArticyObject availableDialogue;
+
     private MenuManager _menuManager;
     
     private float horizontal;
@@ -60,7 +58,14 @@ public class PlayerManager : MonoBehaviour
     
     public void OnInteractuate ()
     {
-        if(_canTalkToNpc) Debug.Log("Interactuate");
+        if (availableDialogue)
+        {
+            Debug.Log("Interactuate");
+
+            if (_dialogueManager.DialogueActive==1) _dialogueManager.ContinueDialogue();
+            else if(_dialogueManager.DialogueActive==0) _dialogueManager.StartDialogue(availableDialogue);
+            else if(_dialogueManager.DialogueActive==2) _dialogueManager.CloseDialogueBox();
+        }
     }
 
     public void OnOpenInventory()
@@ -85,9 +90,6 @@ public class PlayerManager : MonoBehaviour
        if(!_menuManager.Pause) _menuManager.OpenMenu();
        else _menuManager.CloseMenu();
     }
-    
-
-    
 
     private void CheckSpriteOrientation()
     {
@@ -114,5 +116,18 @@ public class PlayerManager : MonoBehaviour
         Vector3 localScale = transform.localScale;
         localScale.y *= -1f;
         transform.localScale = localScale; 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("trigger npc");
+        var articyReferenceComponent = other.GetComponent<ArticyReference>();
+        if(articyReferenceComponent)         availableDialogue = articyReferenceComponent.reference.GetObject();
+        Debug.Log(articyReferenceComponent+", "+availableDialogue);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.GetComponent<ArticyReference>() != null) availableDialogue = null;
     }
 }
