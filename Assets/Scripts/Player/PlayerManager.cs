@@ -86,7 +86,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void OnOptions ()
     {
-       Debug.Log("Options");
+       Debug.Log("Options: "+(_menuManager.Pause));
        if(!_menuManager.Pause) _menuManager.OpenMenu();
        else _menuManager.CloseMenu();
     }

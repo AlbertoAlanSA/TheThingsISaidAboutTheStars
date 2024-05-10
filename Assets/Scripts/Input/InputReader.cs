@@ -61,24 +61,24 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
         public void EnableGameplayInput()
         {
-                _gameInput.Menus.Disable();
-                _gameInput.Dialogues.Disable();
+                //_gameInput.Menus.Disable();
+               // _gameInput.Dialogues.Disable();
                 _gameInput.Gameplay.Enable();
         }
 
         public void EnableMenuInput()
         {
-                _gameInput.Dialogues.Disable();
-                _gameInput.Gameplay.Disable();
+               // _gameInput.Dialogues.Disable();
+               // _gameInput.Gameplay.Disable();
 
-                _gameInput.Menus.Enable();
+                //_gameInput.Menus.Enable();
         }
 
         public void EnableDialogueInput()
         {
-                _gameInput.Menus.Enable();
-                _gameInput.Gameplay.Disable();
-                _gameInput.Dialogues.Enable();
+                //_gameInput.Menus.Enable();
+               // _gameInput.Gameplay.Disable();
+               // _gameInput.Dialogues.Enable();
         }
 
         #region GAMEPLAY
@@ -99,7 +99,12 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
                 if (context.performed) OpenInventoryEvent.Invoke();
         }
 
-        
+        public void OnCancel(InputAction.CallbackContext context)
+        {
+                if (context.performed) OptionsEvent.Invoke();
+                
+        }
+
 
         public void OnDiary(InputAction.CallbackContext context)
         {
@@ -142,7 +147,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
 
         void GameInput.IMenusActions.OnCancel(InputAction.CallbackContext context)
         {
-                if (context.performed) OptionsEvent.Invoke();
+                //if (context.performed) OptionsEvent.Invoke();
         }
 
         public void OnMouseMove(InputAction.CallbackContext context)
@@ -195,11 +200,7 @@ public class InputReader : ScriptableObject, GameInput.IGameplayActions, GameInp
                 throw new NotImplementedException();
         }
 
-        void GameInput.IGameplayActions.OnCancel(InputAction.CallbackContext context)
-        {
-                if (context.performed) OptionsEvent.Invoke();
-        }
-
+     
 
         
 

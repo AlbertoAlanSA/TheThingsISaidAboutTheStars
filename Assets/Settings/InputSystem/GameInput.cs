@@ -348,7 +348,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""6c005beb-1d23-4c89-9707-a56a5521e92e"",
-                    ""path"": ""<Keyboard>/Escape"",
+                    ""path"": ""<Keyboard>/1"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
