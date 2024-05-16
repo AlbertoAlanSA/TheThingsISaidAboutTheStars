@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
+//using UnityEngine.PlayerLoop;
 
-public class NPC : MonoBehaviour
+/*public class NPC : MonoBehaviour
 {
 
     
 }
+*/
