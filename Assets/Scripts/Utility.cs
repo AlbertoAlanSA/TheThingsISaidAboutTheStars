@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Prologue;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,11 +36,17 @@ public class Utility : MonoBehaviour
         }
     }
 
-    public void NextScene()
+    public void NextScenePrologue()
+    {
+        GetComponent<DialogueManagerPrologue>().CloseDialogueBox();     
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+    }
+     public void NextScene()
     {
         GetComponent<DialogueManager>().CloseDialogueBox();     
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
+
 
 
 }
