@@ -20,7 +20,7 @@ namespace Prologue
         [SerializeField] private RectTransform AlexLayoutPanel;
         [SerializeField] private GameObject chat;
         [SerializeField] private GameObject chatBubblePrefab;
-        private bool firstMessage = true;
+       // private bool firstMessage = true;
         private float lastButtonHeight = -0;
         private int DialogueActive { get; set; } // 0 es false, 1 es true, 2 es acabado
         private ArticyFlowPlayer flowPlayer;
@@ -101,7 +101,7 @@ namespace Prologue
             {
                 // if( aBranches.Count >1) //tiene que estar comentado en el test del prologo, si se desciomenta porner condicion
                 //{
-                int i = 0;
+                //int i = 0;
                 // }
             }
             else
