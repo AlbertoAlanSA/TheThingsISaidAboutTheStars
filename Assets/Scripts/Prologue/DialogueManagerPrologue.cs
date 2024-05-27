@@ -41,6 +41,11 @@ namespace Prologue
             flowPlayer.FinishCurrentPausedObject();
         }
 
+        public void FinishCurrentPausedObject()
+        {
+            flowPlayer.FinishCurrentPausedObject();
+        }
+
         public void OnFlowPlayerPaused(IFlowObject aObject)
         {
             Debug.Log(" OnFlowPaused");

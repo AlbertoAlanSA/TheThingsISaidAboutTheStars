@@ -8,14 +8,18 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace Prologue
 {
     public class DialogueManagerChat : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
+        [FormerlySerializedAs("dialogueWidget")]
         [Header("UI")] 
-        [SerializeField] private GameObject dialogueWidget;
+        [SerializeField] private GameObject canvasChat;
+        [SerializeField] private GameObject canvasWeb;
+
         [SerializeField] private RectTransform ValLayoutPanel;
         [SerializeField] private RectTransform AlexLayoutPanel;
         [SerializeField] private GameObject chat;
@@ -35,19 +39,20 @@ namespace Prologue
         {
             Debug.Log("Start dialogue");
             DialogueActive = 1;
-            dialogueWidget.SetActive(DialogueActive==1);
+            canvasChat.SetActive(DialogueActive==1);
             flowPlayer.StartOn = aObject;
         }
 
         public void CloseDialogueBox()
         {
             DialogueActive = 0;
-            dialogueWidget.SetActive(DialogueActive==1);
+            canvasChat.SetActive(DialogueActive==1);
             flowPlayer.FinishCurrentPausedObject();
         }
 
         public void OnFlowPlayerPaused(IFlowObject aObject)
         {
+          
             Debug.Log(" OnFlowPaused");
         
              var objectWithSpeaker = aObject as IObjectWithSpeaker;
@@ -69,8 +74,22 @@ namespace Prologue
                             RectTransform temp = speakerEntity.DisplayName == "Alex" ? AlexLayoutPanel : ValLayoutPanel;
                             var button = Instantiate(chatBubblePrefab, temp.transform.position, new Quaternion(0,0,0,0), chat.transform);
                             button.GetComponentInChildren<TextMeshProUGUI>().text = objectWithText.Text;
-                            button.GetComponentInChildren<TextMeshProUGUI>().alignment = speakerEntity.DisplayName == "Alex" ? TextAlignmentOptions.Left : 
-                                TextAlignmentOptions.Left;
+                            button.GetComponentInChildren<TextMeshProUGUI>().alignment = speakerEntity.DisplayName == "Alex" ? TextAlignmentOptions.Left : TextAlignmentOptions.Left;
+                            
+                            if (ArticyGlobalVariables.Default.Test.Link)
+                            {
+                                button.GetComponent<Utility>().canvasChat = canvasChat;
+                                button.GetComponent<Utility>().canvasWeb = canvasWeb;
+                                
+                                button.GetComponent<Button>().interactable = true;
+                                button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
+                                button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Underline; 
+                                button.GetComponentInChildren<TextMeshProUGUI>().color = Color.blue;
+
+                               
+
+
+                            }
                             lastButtonHeight= ((button.GetComponent<RectTransform>().rect.height)) ;
                             Debug.Log(chat.transform.position);
                            

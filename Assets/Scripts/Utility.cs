@@ -3,20 +3,29 @@ using System.Collections;
 using System.Collections.Generic;
 using Prologue;
 using UnityEngine;
+using UnityEngine.Playables;
 using UnityEngine.SceneManagement;
 
 public class Utility : MonoBehaviour
 {
     private int count = 0;
     private Canvas _canvas;
+    public GameObject canvasChat { get; set; }
+    public GameObject canvasWeb { get; set; }
+    [SerializeField]private DialogueManagerPrologue DialogueManagerPrologue;
+
     private bool prologue = false;
+    private Animator _animator;
+
 
     public void CloseCanvas(Canvas canvas)
     {
         canvas.enabled = false;
         if (SceneManager.GetActiveScene().name == "Prologue")
         {
-            _canvas = canvas;
+            if(_canvas==null) _canvas = canvas;
+            _animator = _canvas.GetComponentInChildren<Animator>();
+            
             prologue = true;
         }
         else prologue = false;
@@ -29,6 +38,7 @@ public class Utility : MonoBehaviour
             if (count >= 60)
             {
                 _canvas.enabled = true;
+                _animator.Play("OpenChat");
                 count = 0;
             }
             else
@@ -38,8 +48,9 @@ public class Utility : MonoBehaviour
 
     public void NextScenePrologue()
     {
-        GetComponent<DialogueManagerPrologue>().CloseDialogueBox();     
+        DialogueManagerPrologue.FinishCurrentPausedObject();    
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        
     }
      public void NextScene()
     {
@@ -47,6 +58,14 @@ public class Utility : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
+     
 
+    public void CloseChatOpenWeb()
+    {
+        prologue = false;
+        canvasChat.SetActive(false);
+        canvasWeb.SetActive(true);
+       // canvasWeb.GetComponentInChildren<Animator>().Play("OpenChat");
 
+    }
 }

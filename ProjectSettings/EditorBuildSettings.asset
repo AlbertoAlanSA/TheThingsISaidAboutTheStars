@@ -11,5 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prologue.unity
     guid: 1c44c0e778621b04c8112905e91c263f
+  - enabled: 1
+    path: Assets/Scenes/Day 1/Beach.unity
+    guid: e55bb0fe3eb314d4daf00c5c6efec556
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 77bebf0113c150d42a2241f91c3ed81b, type: 2}
