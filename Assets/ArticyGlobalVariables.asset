@@ -19,9 +19,6 @@ MonoBehaviour:
   - mFullQualifiedName: Test.Link
     mVar:
       values: 00
-  - mFullQualifiedName: Dados.Acierto
-    mVar:
-      values: 00
   IntVariableCache:
   - mFullQualifiedName: Dados.Dado
     mVar:
@@ -29,10 +26,13 @@ MonoBehaviour:
   - mFullQualifiedName: Dados.Modificador
     mVar:
       values: 00000000
+  - mFullQualifiedName: Dados.Roll
+    mVar:
+      values: 00000000
   - mFullQualifiedName: Dados.Resultado
     mVar:
       values: 00000000
-  - mFullQualifiedName: Dados.ASuperar
+  - mFullQualifiedName: Dados.Superar
     mVar:
       values: 00000000
   - mFullQualifiedName: Stats.Charisma
@@ -53,15 +53,19 @@ MonoBehaviour:
   - mFullQualifiedName: Relaciones.Sam
     mVar:
       values: 05000000
-  StringVariableCache: []
+  - mFullQualifiedName: Relaciones.Andrea
+    mVar:
+      values: 05000000
+  StringVariableCache:
+  - mFullQualifiedName: Dados.Tipo
+    mVar:
+      values:
+      - none
   LiveBoolVariableCache:
   - mFullQualifiedName: Test.ApagarOrdenador
     mVar:
       values: 00
   - mFullQualifiedName: Test.Link
-    mVar:
-      values: 00
-  - mFullQualifiedName: Dados.Acierto
     mVar:
       values: 00
   LiveIntVariableCache:
@@ -71,10 +75,13 @@ MonoBehaviour:
   - mFullQualifiedName: Dados.Modificador
     mVar:
       values: 00000000
+  - mFullQualifiedName: Dados.Roll
+    mVar:
+      values: 00000000
   - mFullQualifiedName: Dados.Resultado
     mVar:
       values: 00000000
-  - mFullQualifiedName: Dados.ASuperar
+  - mFullQualifiedName: Dados.Superar
     mVar:
       values: 00000000
   - mFullQualifiedName: Stats.Charisma
@@ -95,7 +102,14 @@ MonoBehaviour:
   - mFullQualifiedName: Relaciones.Sam
     mVar:
       values: 05000000
-  LiveStringVariableCache: []
+  - mFullQualifiedName: Relaciones.Andrea
+    mVar:
+      values: 05000000
+  LiveStringVariableCache:
+  - mFullQualifiedName: Dados.Tipo
+    mVar:
+      values:
+      - none
   isInitialized: 1
   mTest:
     _VariableStorage: {fileID: 11400000}

@@ -58,7 +58,7 @@ public class PlayerManager : MonoBehaviour
     
     public void OnInteractuate ()
     {
-        if (availableDialogue)
+        if (availableDialogue )
         {
             Debug.Log("Interactuate");
 

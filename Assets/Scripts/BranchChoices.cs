@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Articy.Tfg.GlobalVariables;
 using UnityEngine;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
@@ -10,9 +11,9 @@ public class BranchChoices : MonoBehaviour
     private Branch branch;
     private ArticyFlowPlayer flowPlayer;
     [SerializeField] private TextMeshProUGUI buttonText;
-    
     public void AssingBranch(ArticyFlowPlayer flowPlayer, Branch aBranch)
     {
+
         branch = aBranch;
         this.flowPlayer = flowPlayer;
         IFlowObject target = aBranch.Target;
@@ -31,4 +32,7 @@ public class BranchChoices : MonoBehaviour
     {
         flowPlayer.Play(branch);
     }
+
+ 
+    
 }

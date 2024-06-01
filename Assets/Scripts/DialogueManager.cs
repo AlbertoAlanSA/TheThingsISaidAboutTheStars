@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Articy.Tfg;
+using Articy.Tfg.GlobalVariables;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -18,10 +19,12 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
      [SerializeField] private RectTransform branchLayoutPanel;
      [SerializeField] private GameObject branchPrefab;
      [SerializeField] private Camera dialogueCamera;
-
+     [SerializeField] private GameObject roll;
+     [SerializeField] private GameObject pasiveRoll;
+     
     public int DialogueActive { get; set; } // 0 es false, 1 es true, 2 es acabado
     private ArticyFlowPlayer flowPlayer;
-
+    
     private void Start()
     {
         dialogueCamera.enabled = false;
@@ -49,19 +52,32 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     public void OnFlowPlayerPaused(IFlowObject aObject)
     {
         Debug.Log(" OnFlowPaused");
-        dialogueText.text = string.Empty;
-        dialogueSpeaker.text = string.Empty;
+        
+            dialogueText.text = string.Empty;
+            dialogueSpeaker.text = string.Empty;
+        if (ArticyGlobalVariables.Default.Dados.Roll == 1) StartCoroutine(Roll()); 
+        if (ArticyGlobalVariables.Default.Dados.Roll == 2) StartCoroutine(RollPasive());
+        
+            string temp = "";
 
-        string temp="";
-
-        var objectWithSpeaker = aObject as IObjectWithSpeaker;
-        if (objectWithSpeaker != null)
-        {
-            var speakerEntity = objectWithSpeaker.Speaker as Entity;
-            if (speakerEntity != null)         temp = "<i>" +speakerEntity.DisplayName+ "</i >"+": "; //dialogueSpeaker.text = speakerEntity.DisplayName; 
-        }
-           var objectWithText = aObject as IObjectWithLocalizableText ;
-        if (objectWithText != null) dialogueText.text = temp + objectWithText.Text;
+             var objectWithText = aObject as IObjectWithLocalizableText;
+             if (objectWithText != null)
+             {
+                 if(objectWithText.Text == "") flowPlayer.Play();
+                 else
+                 {
+                     var objectWithSpeaker = aObject as IObjectWithSpeaker;
+                     if (objectWithSpeaker != null)
+                     { 
+                        var speakerEntity = objectWithSpeaker.Speaker as Entity;
+                        if (speakerEntity != null)
+                            temp = "<i>" + speakerEntity.DisplayName + "</i >" +
+                                   ": "; //dialogueSpeaker.text = speakerEntity.DisplayName; 
+                     }
+                     dialogueText.text = temp + objectWithText.Text;
+                 }
+                 
+             }
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
@@ -103,5 +119,53 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     void ClearAllBranches()
     {
         foreach(Transform child in branchLayoutPanel) Destroy(child.gameObject);
+    }
+
+    
+   IEnumerator Roll()
+    {
+        Transform modificador = roll.transform.GetChild(1);
+        Transform dado = roll.transform.GetChild(2);
+        Transform resultado = roll.transform.GetChild(3);
+        
+        modificador.gameObject.SetActive(true);
+        modificador.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Tipo +": + "+ ArticyGlobalVariables.Default.Dados.Modificador; //dado modificador
+        
+        Debug.LogError("roll");
+        dado.gameObject.SetActive(true);
+        dado.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Dado.ToString(); //dado numero
+        
+        resultado.GetComponent<TextMeshProUGUI>().text =
+            ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar
+                ? "Acierto"
+                : "Fallo";
+        //animacion aparecer
+        resultado.gameObject.SetActive(true);
+         //animacion entrar
+         roll.GetComponent<Animator>().Play("Base Layer.RollPanelIn");
+
+        yield return new WaitForSeconds(3);
+        //animacion salir
+        roll.GetComponent<Animator>().Play("Base Layer.RollPanelOut");
+
+        //dado.gameObject.SetActive(false);
+        //resultado.gameObject.SetActive(false);
+    }
+
+    IEnumerator RollPasive()
+    {
+        //animacion entrar
+        pasiveRoll.GetComponent<Animator>().Play("Base Layer.PasiveRollPanelIn");
+     
+
+        string temp  ="Tirada de " + ArticyGlobalVariables.Default.Dados.Tipo.ToLower() + ": ";
+        temp +=    ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar
+                ? "Acierto"
+                : "Fallo";
+        pasiveRoll.GetComponentInChildren<TextMeshProUGUI>().text = temp;
+   yield return new WaitForSeconds(3);
+        //animacion entrar
+        pasiveRoll.GetComponent<Animator>().Play("Base Layer.PasiveRollPanelOut",0);
+
     }
 }
