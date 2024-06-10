@@ -13,7 +13,8 @@ using TMPro;
 public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
 {
      [Header("UI")] 
-     [SerializeField] private GameObject dialogueWidget;
+     [SerializeField] private GameObject dialogueWidget;     
+     [SerializeField] private GameObject canvasRec;
      [SerializeField] private TextMeshProUGUI dialogueText;
      [SerializeField] private TextMeshProUGUI dialogueSpeaker;
      [SerializeField] private RectTransform branchLayoutPanel;
@@ -38,6 +39,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         dialogueCamera.enabled = true;
         DialogueActive = 1;
         dialogueWidget.SetActive(DialogueActive==1);
+        canvasRec.SetActive(DialogueActive==1);
         flowPlayer.StartOn = aObject;
     }
 
@@ -45,6 +47,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         DialogueActive = 0;
         dialogueWidget.SetActive(DialogueActive==1);
+        canvasRec.SetActive(DialogueActive==1);
         dialogueCamera.enabled = false;
         flowPlayer.FinishCurrentPausedObject();
     }
@@ -55,29 +58,42 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         
             dialogueText.text = string.Empty;
             dialogueSpeaker.text = string.Empty;
-        if (ArticyGlobalVariables.Default.Dados.Roll == 1) StartCoroutine(Roll()); 
-        if (ArticyGlobalVariables.Default.Dados.Roll == 2) StartCoroutine(RollPasive());
-        
-            string temp = "";
+        switch (ArticyGlobalVariables.Default.Dados.Roll)
+        {
+            case 1:
+                roll.SetActive(true);
+                StartCoroutine(Roll());
+                break;
+            case 2:
+                pasiveRoll.SetActive(true);
+                StartCoroutine(RollPasive());
+                break;
+            case 0:
+                roll.SetActive(false);
+                pasiveRoll.SetActive(false);
+                break;
+        }
 
-             var objectWithText = aObject as IObjectWithLocalizableText;
-             if (objectWithText != null)
-             {
-                 if(objectWithText.Text == "") flowPlayer.Play();
-                 else
-                 {
-                     var objectWithSpeaker = aObject as IObjectWithSpeaker;
-                     if (objectWithSpeaker != null)
-                     { 
-                        var speakerEntity = objectWithSpeaker.Speaker as Entity;
-                        if (speakerEntity != null)
-                            temp = "<i>" + speakerEntity.DisplayName + "</i >" +
-                                   ": "; //dialogueSpeaker.text = speakerEntity.DisplayName; 
-                     }
-                     dialogueText.text = temp + objectWithText.Text;
-                 }
+        string temp = "";
+
+        var objectWithText = aObject as IObjectWithLocalizableText;
+        if (objectWithText != null)
+        {
+            if(objectWithText.Text == "") flowPlayer.Play();
+            else
+            {
+                var objectWithSpeaker = aObject as IObjectWithSpeaker;
+                if (objectWithSpeaker != null)
+                { 
+                    var speakerEntity = objectWithSpeaker.Speaker as Entity;
+                    if (speakerEntity != null)
+                        temp = "<i>" + speakerEntity.DisplayName + "</i >" +
+                               ": "; //dialogueSpeaker.text = speakerEntity.DisplayName; 
+                }
+                dialogueText.text = temp + objectWithText.Text;
+            }
                  
-             }
+        }
     }
 
     public void OnBranchesUpdated(IList<Branch> aBranches)
@@ -125,14 +141,14 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
    IEnumerator Roll()
     {
         Transform modificador = roll.transform.GetChild(1);
-        Transform dado = roll.transform.GetChild(2);
-        Transform resultado = roll.transform.GetChild(3);
+        Transform dado = roll.transform.GetChild(3);
+        Transform dadoImagen = roll.transform.GetChild(2);
+        Transform resultado = roll.transform.GetChild(4);
         
         modificador.gameObject.SetActive(true);
         modificador.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Tipo +": + "+ ArticyGlobalVariables.Default.Dados.Modificador; //dado modificador
         
         Debug.LogError("roll");
-        dado.gameObject.SetActive(true);
         dado.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Dado.ToString(); //dado numero
         
         resultado.GetComponent<TextMeshProUGUI>().text =
@@ -140,11 +156,21 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
                 ? "Acierto"
                 : "Fallo";
         //animacion aparecer
-        resultado.gameObject.SetActive(true);
          //animacion entrar
          roll.GetComponent<Animator>().Play("Base Layer.RollPanelIn");
+         float animationLength = roll.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+         yield return new WaitForSecondsRealtime(animationLength);
+         
+         dadoImagen.gameObject.GetComponent<Animator>().Play("Base Layer.DadoImagen");
+         animationLength = dadoImagen.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+         yield return new WaitForSecondsRealtime(animationLength);
 
-        yield return new WaitForSeconds(3);
+         dado.gameObject.GetComponent<Animator>().Play("Base Layer.DiceNumberAppears");
+         resultado.gameObject.GetComponent<Animator>().Play("Base Layer.DiceResultadoAppears");
+         animationLength = resultado.gameObject.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length;
+
+         yield return new WaitForSecondsRealtime(animationLength + 1);
+         
         //animacion salir
         roll.GetComponent<Animator>().Play("Base Layer.RollPanelOut");
 
