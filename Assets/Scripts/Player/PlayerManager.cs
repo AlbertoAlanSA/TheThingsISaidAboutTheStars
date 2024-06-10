@@ -63,8 +63,16 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("Interactuate");
 
             if (_dialogueManager.DialogueActive==1) _dialogueManager.ContinueDialogue();
-            else if(_dialogueManager.DialogueActive==0) _dialogueManager.StartDialogue(availableDialogue);
-            else if(_dialogueManager.DialogueActive==2) _dialogueManager.CloseDialogueBox();
+            else if (_dialogueManager.DialogueActive == 0)
+            {
+                this.GetComponent<SpriteRenderer>().enabled = false;
+                _dialogueManager.StartDialogue(availableDialogue);
+            }
+            else if (_dialogueManager.DialogueActive == 2)
+            {
+                this.GetComponent<SpriteRenderer>().enabled = true;
+                _dialogueManager.CloseDialogueBox();
+            }
         }
     }
 
@@ -98,10 +106,10 @@ public class PlayerManager : MonoBehaviour
         else if (isFacingRight && horizontal < 0f)
             FlipHorizontal(ref isFacingRight);
 
-        if (!isFacingUp && vertical > 0f)
+        /*if (!isFacingUp && vertical > 0f)
             FlipVertical(ref isFacingUp);
         else if (isFacingUp && vertical <0f)
-            FlipVertical(ref isFacingUp);
+            FlipVertical(ref isFacingUp);*/
     }
     private void FlipHorizontal(ref bool isFacingRight)
     {
