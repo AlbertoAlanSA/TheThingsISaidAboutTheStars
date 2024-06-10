@@ -6,7 +6,7 @@ public class PlayerManager : MonoBehaviour
     public InputReader inputReader;
     public Rigidbody2D rb;
     public DialogueManager _dialogueManager;
-
+    
     private ArticyObject availableDialogue;
 
     private MenuManager _menuManager;
