@@ -1,6 +1,8 @@
 ﻿using System;
 using UnityEngine;
 using Articy.Unity;
+using Unity.VisualScripting;
+
 public class PlayerManager : MonoBehaviour
 {
     public InputReader inputReader;
@@ -8,26 +10,38 @@ public class PlayerManager : MonoBehaviour
     public DialogueManager _dialogueManager;
     
     private ArticyObject availableDialogue;
+    private GameObject npcDialogue;
+
 
     private MenuManager _menuManager;
     
     private float horizontal;
     private float vertical;
-    private float speed = 8f;
+    private float speed = 5f;
     private bool isFacingRight = true;
     private bool isFacingUp = true;
+    private int c;
 
     private void Start()
     {
         _menuManager = GetComponent<MenuManager>();
+        c = 60;
     }
     private void Update()
     {
-        rb.velocity = new Vector3(horizontal * speed,  vertical*speed);
+        //transform.Translate((horizontal * Vector2.right + vertical * Vector2.up ) * (Time.deltaTime * speed));
         CheckSpriteOrientation(); //reemplazar con animation tree
+
+
     }
 
-    private void OnEnable()
+    private void FixedUpdate()
+    {
+
+		rb.velocity = new Vector2 (horizontal * speed, vertical*speed);
+        rb.angularVelocity = -rb.angularVelocity;
+    }
+  private void OnEnable()
     {
         inputReader.EnableGameplayInput();
         inputReader.MoveEvent += OnMove;
@@ -54,6 +68,8 @@ public class PlayerManager : MonoBehaviour
     {
         horizontal = movementVector.x;
         vertical = movementVector.y;
+
+
     }
     
     public void OnInteractuate ()
@@ -66,7 +82,7 @@ public class PlayerManager : MonoBehaviour
             else if (_dialogueManager.DialogueActive == 0)
             {
                 this.GetComponent<SpriteRenderer>().enabled = false;
-                _dialogueManager.StartDialogue(availableDialogue);
+                _dialogueManager.StartDialogue(availableDialogue, npcDialogue);
             }
             else if (_dialogueManager.DialogueActive == 2)
             {
@@ -128,9 +144,14 @@ public class PlayerManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         Debug.Log("trigger npc");
         var articyReferenceComponent = other.GetComponent<ArticyReference>();
-        if(articyReferenceComponent)         availableDialogue = articyReferenceComponent.reference.GetObject();
+        if (articyReferenceComponent)
+        {
+            npcDialogue = other.gameObject;
+            availableDialogue = articyReferenceComponent.reference.GetObject();
+        }
         Debug.Log(articyReferenceComponent+", "+availableDialogue);
     }
 

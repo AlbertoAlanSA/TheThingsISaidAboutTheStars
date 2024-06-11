@@ -8,6 +8,7 @@ using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Articy.Unity;
 using Articy.Unity.Interfaces;
+using Cinemachine;
 using TMPro;
 
 public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
@@ -19,7 +20,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
      [SerializeField] private TextMeshProUGUI dialogueSpeaker;
      [SerializeField] private RectTransform branchLayoutPanel;
      [SerializeField] private GameObject branchPrefab;
+     
      [SerializeField] private Camera dialogueCamera;
+
      [SerializeField] private GameObject roll;
      [SerializeField] private GameObject pasiveRoll;
      
@@ -33,10 +36,15 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         DialogueActive = 0;
     }
 
-    public void StartDialogue(IArticyObject aObject)
+    public void StartDialogue(IArticyObject aObject, GameObject npc)
     {
         Debug.Log("Start dialogue");
         dialogueCamera.enabled = true;
+        Debug.LogError(npc);
+        
+        dialogueWidget.transform.GetChild(0).GetComponent<CinemachineVirtualCamera>().Follow = npc.transform;
+        dialogueWidget.transform.GetChild(1).GetComponent<CinemachineVirtualCamera>().Follow = npc.transform;
+
         DialogueActive = 1;
         dialogueWidget.SetActive(DialogueActive==1);
         canvasRec.SetActive(DialogueActive==1);
