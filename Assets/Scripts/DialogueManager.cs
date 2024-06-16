@@ -159,10 +159,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         Debug.LogError("roll");
         dado.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Dado.ToString(); //dado numero
         
-        resultado.GetComponent<TextMeshProUGUI>().text =
-            ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar
-                ? "Acierto"
-                : "Fallo";
+        resultado.GetComponent<TextMeshProUGUI>().text = ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar ? "Acierto" : "Fallo";
         //animacion aparecer
          //animacion entrar
          roll.GetComponent<Animator>().Play("Base Layer.RollPanelIn");
@@ -193,9 +190,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
      
 
         string temp  ="Tirada de " + ArticyGlobalVariables.Default.Dados.Tipo.ToLower() + ": ";
-        temp +=    ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar
-                ? "Acierto"
-                : "Fallo";
+        temp +=    ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar ? "Acierto" : "Fallo";
         pasiveRoll.GetComponentInChildren<TextMeshProUGUI>().text = temp;
    yield return new WaitForSeconds(3);
         //animacion entrar
