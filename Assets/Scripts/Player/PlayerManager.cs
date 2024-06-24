@@ -99,6 +99,7 @@ public class PlayerManager : MonoBehaviour
     public void OnCancel ()
     {
         Debug.Log("Cancel");
+        Application.Quit();
     }
     public void OnDiary ()
     {
