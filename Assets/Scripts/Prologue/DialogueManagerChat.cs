@@ -33,6 +33,7 @@ namespace Prologue
         {
             flowPlayer = GetComponent<ArticyFlowPlayer>();
             DialogueActive = 0;
+            Cursor.visible = false;
         }
 
         public void StartDialogue(IArticyObject aObject)
