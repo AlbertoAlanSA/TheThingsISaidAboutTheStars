@@ -1,0 +1,19 @@
+<ProjectInfo Version="1">
+  <Signature>7F25F0CD0AF34E2343D4E6D39D0C1611B588B9B5C3050806CE881803942D0039</Signature>
+  <Content>
+    <Project Guid="0bbb1596-764d-494f-bb32-d92dfa53ca2c">
+      <DisplayName Value="TFG"/>
+      <DetailName Value=""/>
+      <MainProjectGuid Value="d71016fa-189b-48d7-82d5-db21ff7da879"/>
+      <IconType Value="0"/>
+      <IdProjectIcon Value="00000000-0000-0000-0000-000000000000"/>
+      <ScmProviderGuid Value="0745c2ee-abe3-451b-934e-7f597f56c0d7"/>
+      <ScmConfiguration Value=""/>
+      <CreationTimeStamp Value="638500299687750775"/>
+      <PartitionHash Value="38F125F42169F813C2AA7C11FE45824FA9CC2E930F494577D004CD6AA6C99331"/>
+      <SaveFileVersion Value="57"/>
+      <ProjectType Value="0"/>
+      <IsOnlineProject Value="False"/>
+    </Project>
+  </Content>
+</ProjectInfo>

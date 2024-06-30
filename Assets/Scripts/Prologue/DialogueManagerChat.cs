@@ -24,7 +24,7 @@ namespace Prologue
         [SerializeField] private RectTransform AlexLayoutPanel;
         [SerializeField] private GameObject chat;
         [SerializeField] private GameObject chatBubblePrefab;
-       // private bool firstMessage = true;
+
         private float lastButtonHeight = -0;
         private int DialogueActive { get; set; } // 0 es false, 1 es true, 2 es acabado
         private ArticyFlowPlayer flowPlayer;

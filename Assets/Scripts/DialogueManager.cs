@@ -179,8 +179,6 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
         //animacion salir
         roll.GetComponent<Animator>().Play("Base Layer.RollPanelOut");
 
-        //dado.gameObject.SetActive(false);
-        //resultado.gameObject.SetActive(false);
     }
 
     IEnumerator RollPasive()

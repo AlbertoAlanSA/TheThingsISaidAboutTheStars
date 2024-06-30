@@ -19,20 +19,14 @@ public class PlayerManager : MonoBehaviour
     private float vertical;
     private float speed = 5f;
     private bool isFacingRight = true;
-    private bool isFacingUp = true;
-    private int c;
 
     private void Start()
     {
         _menuManager = GetComponent<MenuManager>();
-        c = 60;
     }
     private void Update()
     {
-        //transform.Translate((horizontal * Vector2.right + vertical * Vector2.up ) * (Time.deltaTime * speed));
-        CheckSpriteOrientation(); //reemplazar con animation tree
-
-
+        CheckSpriteOrientation(); 
     }
 
     private void FixedUpdate()
@@ -68,8 +62,6 @@ public class PlayerManager : MonoBehaviour
     {
         horizontal = movementVector.x;
         vertical = movementVector.y;
-
-
     }
     
     public void OnInteractuate ()
@@ -122,11 +114,6 @@ public class PlayerManager : MonoBehaviour
             FlipHorizontal(ref isFacingRight);
         else if (isFacingRight && horizontal < 0f)
             FlipHorizontal(ref isFacingRight);
-
-        /*if (!isFacingUp && vertical > 0f)
-            FlipVertical(ref isFacingUp);
-        else if (isFacingUp && vertical <0f)
-            FlipVertical(ref isFacingUp);*/
     }
     private void FlipHorizontal(ref bool isFacingRight)
     {
