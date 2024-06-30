@@ -111,6 +111,12 @@ MonoBehaviour:
   - mFullQualifiedName: Relaciones.Andrea
     mVar:
       values: 05000000
+  - mFullQualifiedName: Documental.Andrea
+    mVar:
+      values: 00000000
+  - mFullQualifiedName: Documental.Sam
+    mVar:
+      values: 00000000
   LiveStringVariableCache:
   - mFullQualifiedName: Dados.Tipo
     mVar:

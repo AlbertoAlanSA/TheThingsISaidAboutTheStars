@@ -86,10 +86,6 @@ namespace Prologue
                                 button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
                                 button.GetComponentInChildren<TextMeshProUGUI>().fontStyle = FontStyles.Underline; 
                                 button.GetComponentInChildren<TextMeshProUGUI>().color = Color.blue;
-
-                               
-
-
                             }
                             lastButtonHeight= ((button.GetComponent<RectTransform>().rect.height)) ;
                             Debug.Log(chat.transform.position);

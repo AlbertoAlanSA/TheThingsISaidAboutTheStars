@@ -49,6 +49,7 @@ namespace Prologue
         public void OnFlowPlayerPaused(IFlowObject aObject)
         {
             Debug.Log(" OnFlowPaused");
+            
             if (ArticyGlobalVariables.Default.Test.ApagarOrdenador)
             { 
                 Debug.Log("apagar ordenador");
@@ -98,9 +99,7 @@ namespace Prologue
                 }
                 // }
             }
-            else
-        
-                DialogueActive = 2;
+            else DialogueActive = 2;
         
         }
 
