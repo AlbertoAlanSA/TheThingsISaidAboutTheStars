@@ -76,9 +76,8 @@ namespace Prologue
                             var button = Instantiate(chatBubblePrefab, temp.transform.position, new Quaternion(0,0,0,0), chat.transform);
                             button.GetComponentInChildren<TextMeshProUGUI>().text = objectWithText.Text;
                             button.GetComponentInChildren<TextMeshProUGUI>().alignment = speakerEntity.DisplayName == "Alex" ? TextAlignmentOptions.Left : TextAlignmentOptions.Left;
-                            
                             if (ArticyGlobalVariables.Default.Test.Link)
-                            {
+                           {
                                 button.GetComponent<Utility>().canvasChat = canvasChat;
                                 button.GetComponent<Utility>().canvasWeb = canvasWeb;
                                 

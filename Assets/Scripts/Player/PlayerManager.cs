@@ -19,21 +19,26 @@ public class PlayerManager : MonoBehaviour
     private float vertical;
     private float speed = 5f;
     private bool isFacingRight = true;
+    private bool talking;
 
     private void Start()
     {
         _menuManager = GetComponent<MenuManager>();
+        talking = false;
     }
     private void Update()
     {
-        CheckSpriteOrientation(); 
+        if (!talking)
+            CheckSpriteOrientation(); 
     }
 
     private void FixedUpdate()
     {
-
-		rb.velocity = new Vector2 (horizontal * speed, vertical*speed);
-        rb.angularVelocity = -rb.angularVelocity;
+        if (!talking)
+        {
+            rb.velocity = new Vector2(horizontal * speed, vertical * speed);
+            rb.angularVelocity = -rb.angularVelocity;
+        }
     }
   private void OnEnable()
     {
@@ -73,6 +78,7 @@ public class PlayerManager : MonoBehaviour
             if (_dialogueManager.DialogueActive==1) _dialogueManager.ContinueDialogue();
             else if (_dialogueManager.DialogueActive == 0)
             {
+                talking = true;
                 this.GetComponent<SpriteRenderer>().enabled = false;
                 _dialogueManager.StartDialogue(availableDialogue, npcDialogue);
             }
@@ -80,6 +86,7 @@ public class PlayerManager : MonoBehaviour
             {
                 this.GetComponent<SpriteRenderer>().enabled = true;
                 _dialogueManager.CloseDialogueBox();
+                talking = false;
             }
         }
     }
@@ -104,8 +111,16 @@ public class PlayerManager : MonoBehaviour
     public void OnOptions ()
     {
        Debug.Log("Options: "+(_menuManager.Pause));
-       if(!_menuManager.Pause) _menuManager.OpenMenu();
-       else _menuManager.CloseMenu();
+       if (!_menuManager.Pause)
+       {
+           talking = true;
+           _menuManager.OpenMenu();
+       }
+       else
+       {
+           talking = false;
+           _menuManager.CloseMenu();
+       }
     }
 
     private void CheckSpriteOrientation()

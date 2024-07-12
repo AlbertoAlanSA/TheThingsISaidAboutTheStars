@@ -79,8 +79,8 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
             case 0:
                 roll.SetActive(false);
                 pasiveRoll.SetActive(false);
-                break;
-        }
+               break;
+    }
 
         string temp = "";
 
@@ -95,8 +95,7 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
                 { 
                     var speakerEntity = objectWithSpeaker.Speaker as Entity;
                     if (speakerEntity != null)
-                        temp = "<i>" + speakerEntity.DisplayName + "</i >" +
-                               ": "; //dialogueSpeaker.text = speakerEntity.DisplayName; 
+                        temp = "<i>"+ speakerEntity.DisplayName + "</i >" +": "; 
                 }
                 dialogueText.text = temp + objectWithText.Text;
             }
@@ -185,9 +184,9 @@ public class DialogueManager : MonoBehaviour, IArticyFlowPlayerCallbacks
     {
         //animacion entrar
         pasiveRoll.GetComponent<Animator>().Play("Base Layer.PasiveRollPanelIn");
-     
 
-        string temp  ="Tirada de " + ArticyGlobalVariables.Default.Dados.Tipo.ToLower() + ": ";
+
+        string temp = "Tirada de "+ ArticyGlobalVariables.Default.Dados.Tipo.ToLower() + ": ";
         temp +=    ArticyGlobalVariables.Default.Dados.Resultado > ArticyGlobalVariables.Default.Dados.Superar ? "Acierto" : "Fallo";
         pasiveRoll.GetComponentInChildren<TextMeshProUGUI>().text = temp;
    yield return new WaitForSeconds(3);
